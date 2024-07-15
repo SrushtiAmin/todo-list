@@ -11,11 +11,18 @@ function App() {
     setTodos(todos.filter((e) => {
       return e !== todo;
     }));
+    localStorage.getItem("todos");
   }
 
   const addTodo = (title, desc) => {
-    console.log("I am adding this todo", title, desc);
-    let sno = todos.length > 0 ? todos[todos.length - 1].sno + 1 : 1;
+    console.log("I am adding this todo", title, desc)
+    let sno;
+    if(todos.length==0){
+      sno =0;
+    }else{
+      sno = todos.length > 0 ? todos[todos.length - 1].sno + 1 : 1;
+    }
+    
     const newTodo = {
       sno: sno,
       title: title,
@@ -23,25 +30,13 @@ function App() {
     }
     setTodos([...todos, newTodo]);
     console.log(newTodo);
+
+    if(localStorage.getItem("todos")){
+      
+    }
   }
 
-  const [todos, setTodos] = useState([
-    {
-      sno: 1,
-      title: "Go to the market",
-      desc: "You need to go market to get this job done1"
-    },
-    {
-      sno: 2,
-      title: "Go to the mall",
-      desc: "You need to go mall to get this job done2"
-    },
-    {
-      sno: 3,
-      title: "Go to the ghat",
-      desc: "You need to go ghat to get this job done3"
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   return (
     <>
